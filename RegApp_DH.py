@@ -1,4 +1,4 @@
-# RegApp_DH.py
+# RegApp.py
 
 import streamlit as st
 import numpy as np
@@ -225,7 +225,15 @@ st.plotly_chart(fig, use_container_width=True)
 # -----------------------
 st.subheader("Try a Custom Prediction")
 user_size = st.number_input("Enter the house size (sq ft):", min_value=0.0, step=100.0)
-user_age = st.number_input("Enter the house age (years):", min_value=0.0, step=1.0)
+
+# Force house age to be an integer (no decimals)
+user_age = st.number_input(
+    "Enter the house age (years):", 
+    min_value=0, 
+    max_value=150, 
+    step=1, 
+    format="%d"
+)
 
 if st.button("Predict"):
     # Linear Prediction
